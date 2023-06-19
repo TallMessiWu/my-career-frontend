@@ -1,5 +1,5 @@
 <template>
-  <router-view/>
+ <h1>Home</h1>
 </template>
 
 <script setup>
@@ -8,10 +8,10 @@
 
 <script>
 export default {
-    name: "Index"
+  name: "Home"
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped lang="less">
 
 </style>
