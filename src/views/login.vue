@@ -9,26 +9,26 @@
         <el-col :lg="8" :md="12" class="right">
             <h2 class="font-bold text-3xl text-gray-800">Welcome</h2>
             <div class="my-3"></div>
-            <el-form class="w-[250px]">
-                <el-form-item>
-                    <el-input>
+            <el-form ref="formRef" class="w-[250px]" :model="form" :rules="rules">
+                <el-form-item prop="username">
+                    <el-input v-model="form.username" placeholder="Username/Email">
                         <template #prefix>
                             <el-icon><User /></el-icon>
                         </template>
                     </el-input>
                 </el-form-item>
-                <el-form-item>
-                    <el-input>
+                <el-form-item prop="password">
+                    <el-input v-model="form.password" placeholder="Password" type="password" show-password>
                         <template #prefix>
                             <el-icon><Lock /></el-icon>
                         </template>
                     </el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button round color="#626aef" class="w-[250px]">Login</el-button>
+                    <el-button round color="#626aef" class="w-[250px]" @click="onSubmit" :loading="loading">Login</el-button>
                 </el-form-item>
                 <el-form-item>
-                    <el-button round color="#909399" class="w-[250px]">Sign Up</el-button>
+                    <el-button round color="#909399" class="w-[250px]" :loading="loading">Sign Up</el-button>
                 </el-form-item>
                 <div>
                     <p>
@@ -41,9 +41,45 @@
     </el-row>
 </template>
 
-<scipt setup>
+<script setup>
+import { ref, reactive } from 'vue'
+import { login } from '../api/admin'
+import { useRouter } from 'vue-router'
+import { notify } from '../composables/util'
+ import { setToken } from '~/composables/auth'
 
-</scipt>
+const router = useRouter()
+const form = reactive({
+    username: '',
+    password: ''
+})
+
+const rules = {
+    username:[{ required: true, message: 'username cannot be empty', trigger: 'blur' }],
+    password:[{ required: true, message: 'password cannot be empty', trigger: 'blur' }]
+}
+
+const formRef = ref(null)
+const loading = ref(false)
+
+const onSubmit = () => {
+    formRef.value.validate((valid) =>{
+        if(!valid) return false
+        loading.value = true
+        login(form.username, form.password)
+        .then(res => {
+            notify("login success")
+            setToken(res.token)
+            router.push('/')
+        })
+        .finally(() => {
+            loading.value = false
+        })
+    })
+}
+
+
+</script>
 
 <style scoped>
 .login-container{
