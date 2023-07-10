@@ -25,10 +25,10 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button round color="#626aef" class="w-[250px]" @click="onSubmit" :loading="loading">Login</el-button>
+                    <el-button round color="#626aef" class="w-[250px]" @click="onSubmit" :loading="loading" type="primary" >Login</el-button>
                 </el-form-item>
                 <el-form-item>
-                    <el-button round color="#909399" class="w-[250px]" :loading="loading">Sign Up</el-button>
+                    <el-button round color="#909399" class="w-[250px]" @click="OnSignup" type="primary">Sign Up</el-button>
                 </el-form-item>
                 <div>
                     <p>
@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { login } from '../api/admin'
 import { useRouter } from 'vue-router'
 import { notify } from '../composables/util'
@@ -77,6 +77,15 @@ const onSubmit = () => {
         })
     })
 }
+
+//回车键和登录绑定
+function onKeyUp(e){
+    if(e.key == "Enter") onSubmit()
+}
+onMounted(() => { document.addEventListener("keyup", onKeyUp)})
+onBeforeUnmount(() => {document.removeEventListener("keyup", onKeyUp)})
+
+const OnSignup = () => { router.push('/signup')}
 
 
 </script>

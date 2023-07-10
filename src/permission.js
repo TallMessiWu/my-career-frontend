@@ -4,9 +4,8 @@ import { notify } from '~/composables/util'
 
 //全局前置守卫
 router.beforeEach(async(to, from, next)=>{
-    console.log("here")
     const token = getToken()
-    if(!token && to.path != '/login' && to.path != 'signup' && to.path != 'forgotPassword'){
+    if(!token && to.path != '/login' && to.path != '/signup' && to.path != '/forgotPassword'){
         notify("Login to start the journey", "error")
         return next({ path: '/login'})
     }
