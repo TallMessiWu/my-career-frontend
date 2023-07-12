@@ -1,5 +1,7 @@
-//Warning
-import axios from '../axios'
+import service from '~/axios'
+
+//const url = 'http://127.0.0.1:5000'
+
 export function login(username, password){
     //运用正则表达式判断用户输入的是用户名还是邮箱
     const emailRegex = /^\S+@\S+$/
@@ -8,8 +10,7 @@ export function login(username, password){
         //TODO: 处理邮箱登录
         return null
     }else{
-        //TODO: 临时后端API
-        return axios.post("/admin/login", {
+        return service.post("/auth/login", {
             username,
             password
         })
@@ -17,13 +18,11 @@ export function login(username, password){
 }
 
 
-export function signup(username, password, email){
-    console.log("signing you up")
-    //TODO:后端注册API
-
-    return axios.post("/admin/login",{
+export function signup(username, password,re_password, email){
+    return service.post("/auth/register",{
         username,
-        password
+        password,
+        re_password,
+        email
     })
-
 }

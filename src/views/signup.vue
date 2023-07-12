@@ -80,17 +80,20 @@ const rules = {
     email:[{ validator: validateEmail, trigger: 'blur'}]}
 
 const onSignup = () => {
-    formRef.value.validate((valid) => {
+    formRef.value.validate( (valid) => {
         if(!valid) return false
         loading.value = true
-        signup(form.username, form.password, form.email)
+        signup(form.username, form.password, form.re_password, form.email)
         .then(res => {
-            notify("Sign up sucess.. Logging in")
-            setToken(res.token)
-            router.push('/')
+            if(res.data.status == 'success'){
+                notify("Sign up sucess.. Logging in")
+                setToken(res.token)
+                router.push('/')
+            }else{
+                notify(res.data.message, "error")
+            }
         })
         .finally(() => {
-            console.log('loading ends')
             loading.value = false
         })
     })
