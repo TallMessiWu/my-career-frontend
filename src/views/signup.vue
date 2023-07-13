@@ -45,6 +45,9 @@ const loading = ref(false)
 
 //自定义验证规则
 const validatePassword = (rule, value, callback) => {
+    if (value === '') {
+        callback(new Error('password connot be empty'))
+    }
     const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]{8,18}$/
     if (!value.match(reg)) {
         callback(new Error('8 to 18 Characters, at least one uppercase letter, one lowercase letter and one number'))
@@ -72,10 +75,22 @@ const validateEmail = (rule, value, callback) => {
         callback()
     }
 }
+
+const validateUsername = (rule, value, callback) => {
+    if(value === ''){
+        callback(new Error('username cannot be empty'))
+    }
+    //Regex for Valid Characters i.e. Alphabets, Numbers and Space.
+    const regex = /^[A-Za-z0-9 ]+$/
+    if(!value.match(regex)) {
+        callback(new Error('username cannot cantain any special character'))
+    }else {
+        callback()
+    }
+}
 const rules = {
-    username: [{ required: true, message: 'username cannot be empty', trigger: 'blur'}],
-    password: [{ required: true, message: 'password connot be empty', trigger: 'blue'},
-               { validator: validatePassword, trigger: 'blur'}],
+    username: [{ validator: validateUsername, trigger: 'blur'}],
+    password: [{ validator: validatePassword, trigger: 'blur'}],
     re_password:[{ validator: validatePassword2, trigger: 'blur'}],
     email:[{ validator: validateEmail, trigger: 'blur'}]}
 
