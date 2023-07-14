@@ -16,3 +16,7 @@ export function signup(username, password,re_password, email){
         email
     })
 }
+
+export function logout(){
+    return service.get("/auth/logout")
+}
