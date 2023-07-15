@@ -19,13 +19,13 @@ async function directToCorrectHomePage() {
     if (route.query.force === "mobile") {
       router.replace("/mobile/home")
     } else if (route.query.force === "pc") {
-      router.replace("/home")
+      router.replace("/login")
     }
   } else {
     if (isMobile()) {
       router.replace("/mobile/home")
     } else {
-      router.replace("/home")
+      router.replace("/login")
     }
   }
 }

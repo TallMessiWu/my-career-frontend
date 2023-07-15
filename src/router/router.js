@@ -1,6 +1,8 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHashHistory} from 'vue-router'
 import Index from '../views/index.vue'
-import Home from "../views/home.vue";
+import Home from "../views/home.vue"
+import Login from '../views/login.vue'
+import Signup from '~/views/signup.vue'
 
 const routes = [
     {
@@ -14,11 +16,18 @@ const routes = [
                 name: "Home"
             }
         ]
+    },{
+        path: "/login",
+        component: Login
+    },{
+        path: "/signup",
+        component: Signup
     }
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    //路径上＋一个#
+    history: createWebHashHistory(),
     routes
 })
 
