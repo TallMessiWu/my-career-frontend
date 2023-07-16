@@ -5,10 +5,11 @@ import { notify } from '~/composables/util'
 //全局前置守卫
 router.beforeEach(async(to, from, next)=>{
     const token = getToken()
-    if(!token && to.path != '/login' && to.path != '/signup' && to.path != '/forgotPassword' && to.path != '/test'){
-        notify("Login to start the journey", "error")
-        return next({ path: '/login'})
-    }
+    //之后再处理
+    // if(!token && to.path != '/login' && to.path != '/signup' && to.path != '/forgotPassword' && to.path != '/resetPassword/*'){
+    //     notify("Login to start the journey", "error")
+    //     return next({ path: '/login'})
+    // }
 
     //防止重复登录
     if(token && to.path == '/login'){

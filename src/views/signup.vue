@@ -95,7 +95,7 @@ const rules = {
     email:[{ validator: validateEmail, trigger: 'blur'}]}
 
 const onSignup = () => {
-    formRef.value.validate( (valid) => {
+    formRef.value.validate((valid) => {
         if(!valid) return false
         loading.value = true
         signup(form.username, form.password, form.re_password, form.email)

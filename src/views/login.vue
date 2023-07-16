@@ -28,11 +28,11 @@
                     <el-button round color="#626aef" class="w-[250px]" @click="onSubmit" :loading="loading" type="primary" >Login</el-button>
                 </el-form-item>
                 <el-form-item>
-                    <el-button round color="#909399" class="w-[250px]" @click="OnSignup" type="primary">Sign Up</el-button>
+                    <el-button round color="#909399" class="w-[250px]" @click="onSignup" type="primary">Sign Up</el-button>
                 </el-form-item>
                 <div>
                     <p>
-                        <el-link type="primary">Forgot Password</el-link>
+                        <el-link type="primary" @click="onForgot">Forgot Password</el-link>
                     </p>
                 </div>
             </el-form>
@@ -68,9 +68,13 @@ const onSubmit = () => {
         loading.value = true
         login(form.username, form.password)
         .then(res => {
-            notify("login success")
-            setToken(res.token)
-            router.push('/')
+            if(res.data.status == 'success'){
+                notify("login success")
+                setToken(res.token)
+                router.push('/')
+            }else{
+                notify(res.data.message, "error")
+            }
         })
         .finally(() => {
             loading.value = false
@@ -85,7 +89,9 @@ function onKeyUp(e){
 onMounted(() => { document.addEventListener("keyup", onKeyUp)})
 onBeforeUnmount(() => {document.removeEventListener("keyup", onKeyUp)})
 
-const OnSignup = () => { router.push('/signup')}
+const onSignup = () => { router.push('/signup')}
+
+const onForgot = () => { router.push('/forgotPassword')}
 
 
 </script>
