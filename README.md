@@ -1,7 +1,24 @@
-# Vue 3 + Vite
+## Built With
+### Frontend
+<p align="left"> 
+  &emsp; 
+  <a href="https://vuejs.org/" target="_blank"> 
+    <img alt="vuejs" src="https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D"/>
+  </a>
+  &emsp;
+  <a href="https://vitejs.dev/" target="_blank"> 
+    <img alt="Vite" src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E"/>
+  </a>
+  &emsp;
+</p>
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+### Backend
+<p align="left"> 
+  &emsp; 
+  <a href="https://flask.palletsprojects.com/en/2.3.x/" target="_blank">
+    <img alt="Flask" src="https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white">
+  </a> 
+   &emsp;
+</p>
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
