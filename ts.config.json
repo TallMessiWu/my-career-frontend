@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "types": ["vite/client", "@types/jest"],
+        "include": ["src/**/*"],
+        "exclude": ["node_modules", "src/**/*.spec.ts"]
+    }
+  }
