@@ -70,7 +70,7 @@ const onSubmit = () => {
         .then(res => {
             if(res.data.status == 'success'){
                 notify("login success")
-                setToken(res.token)
+                setToken(res.data)
                 router.push('/')
             }else{
                 notify(res.data.message, "error")

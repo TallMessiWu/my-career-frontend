@@ -1,7 +1,7 @@
 <template>
-  <div>Index</div>
-  <el-button @click="onLogout">Log out</el-button>
-  <el-button @click="exportPDF">export PDF</el-button>
+  <Header></Header>
+  <h2>Main Page</h2>
+  
 </template>
 
 <script setup>
@@ -13,6 +13,7 @@ import { removeToken } from '~/composables/auth'
 import { logout } from '~/api/admin'
 import { jsPDF } from "jspdf"
 import { getAllApplication } from '~/api/application'
+import Header from '~/layout/header.vue'
 // import 'jspdf-autotable'
 import { applyPlugin } from 'jspdf-autotable'
 applyPlugin(jsPDF)
@@ -20,6 +21,9 @@ applyPlugin(jsPDF)
 
 export default {
     name: "Index",
+    components:{
+      Header
+    },
     methods: {
       onLogout(){
         removeToken()
