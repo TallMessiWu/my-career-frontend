@@ -44,6 +44,7 @@ export default {
 }
 
 .layout .header .logo {
+    margin-left:30px;
     font-size: 30px;
 }
 
